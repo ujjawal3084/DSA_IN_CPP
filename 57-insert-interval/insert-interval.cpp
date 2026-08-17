@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
+        vector<vector<int>> finalans;
+
+        intervals.push_back(newInterval);
+        sort(intervals.begin(), intervals.end());
+
+        for (int i = 0; i < intervals.size(); i++) {
+            if (finalans.empty() || finalans.back()[1] < intervals[i][0]) {
+                
+                finalans.push_back(intervals[i]);
+            }
+            else {
+            
+                finalans.back()[1] = max(finalans.back()[1], intervals[i][1]);
+            }
+        }
+
+        return finalans;
+    }
+};
